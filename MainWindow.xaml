@@ -1,0 +1,193 @@
+﻿<Window x:Class="VIPER.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:presenters="clr-namespace:VIPER.Presenters"
+        xmlns:viper="clr-namespace:VIPER"
+        Title="{x:Static res:Resources.MainWindowTitle}" Height="650" Width="1200"
+        x:Name="_this"
+           xmlns:res="clr-namespace:VIPER.Properties">
+  
+
+    <Window.Resources>
+        <ObjectDataProvider x:Key="Count"></ObjectDataProvider>
+        
+    </Window.Resources>
+    <Window.Style>
+        <Style TargetType="{x:Type Window}" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <DockPanel Background="LightGray">
+
+                            <Grid>
+                                
+                                <Grid.RowDefinitions>
+                                    
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="190"/>
+                                </Grid.RowDefinitions>
+
+                                
+
+                                <presenters:Subsystem Grid.Row="0" x:Name="subsystem" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                                <Grid Grid.Row="1" Background="LightGray">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="45"/>
+                                        <RowDefinition Height="45"/>
+                                        <RowDefinition Height="70"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="260"/>
+                                        <ColumnDefinition Width="120"/>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="180"/>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <RadioButton x:Name="RB1" Grid.Column="2" Grid.Row="0" Checked="ModuleAddModeChecked" Background="{StaticResource AddModuleButton_Icon}"
+                             Unchecked="ModeUnchecked" Style="{StaticResource AddElementButtonStyle}" />
+                                    <RadioButton x:Name="RB2" Grid.Column="2" Grid.Row="1" Checked="NodeAddModeChecked" Background="{StaticResource AddNodeButton_Icon}"
+                             Unchecked="ModeUnchecked" Style="{StaticResource AddElementButtonStyle}" />
+                                    <RadioButton x:Name="RB3" Grid.Column="2" Grid.Row="2" Checked="LineAddModeChecked" Background="{StaticResource AddLineButton_Icon}"
+                             Unchecked="ModeUnchecked" Style="{StaticResource AddElementButtonStyle}" />
+
+                                    <StackPanel Grid.Column="3" Grid.Row="0"    Orientation="Vertical">
+                                        <Label 
+                                               Content="{x:Static res:Resources.ElementCount}"
+                                         Padding="5,5,5,1"
+                                        />
+                                        <ComboBox  Grid.Column="3" Grid.Row="0"  Margin="15,0,15,0"   SelectionChanged ="ComboBox_SelectionChanged1" >
+                                        <ComboBoxItem IsSelected="True" >1</ComboBoxItem>
+                                        <ComboBoxItem >2</ComboBoxItem>
+                                        <ComboBoxItem>3</ComboBoxItem>
+                                        <ComboBoxItem>4</ComboBoxItem>
+                                        <ComboBoxItem>5</ComboBoxItem>
+                                        <ComboBoxItem>6</ComboBoxItem>
+                                        <ComboBoxItem>7</ComboBoxItem>
+                                        <ComboBoxItem>8</ComboBoxItem>
+                                        <ComboBoxItem>9</ComboBoxItem>
+                                         <ComboBoxItem>10</ComboBoxItem>
+                                         <ComboBoxItem>15</ComboBoxItem>
+                                        </ComboBox>
+                                        </StackPanel>
+
+                                    <StackPanel Grid.Column="3" Grid.Row="1"   Orientation="Vertical">
+                                        <Label Margin="0"
+                                               Content="{x:Static res:Resources.ElementPosition}"
+                                         Padding="5,5,5,1"
+                                        />
+                                        <ComboBox   SelectionChanged ="ComboBox_SelectionChanged2" Margin="15,0,15,0"  >
+                                            <ComboBoxItem IsSelected="True" Content="{x:Static res:Resources.Horizontal}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{x:Static res:Resources.Vertical}" ></ComboBoxItem>
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="3" Grid.Row="2"  Orientation="Vertical" Margin="0,0,0,-17">
+                                        <Button x:Name="Clear" Click="Clear_OnClick" Content="{x:Static res:Resources.ClearForm}"  Margin="15,2,15,0" />
+
+
+                                        <CheckBox Content="{x:Static res:Resources.DeleteSelect}" Checked="Delete_Select_Element" Unchecked="Delete_Select_Element" Margin="15,2,15,0"  />
+
+                                        <Button x:Name="Save" Click="Save_Click" Content="{x:Static res:Resources.SaveAs}"  Margin="15,2,15,0" />
+                                        <Button x:Name="Open" Click="Open_Click" Content="{x:Static res:Resources.Open}"  Margin="15,2,15,0" />
+
+
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="4" Grid.Row="0"  Orientation="Vertical">
+
+                                        <Button x:Name="GetGraph" Click="GetGraph_Click"  Content="{x:Static res:Resources.GetRating}"  Margin="15,2,15,0" />
+                                        <CheckBox x:Name="Repair" IsChecked="true" Content="{x:Static res:Resources.UseRepair}" Checked='Use_Repair_Checked' Unchecked="Use_Repair_Checked" Margin="15,2,15,0"  />
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="4" Grid.Row="1"  Orientation="Vertical">
+                                        <CheckBox x:Name="ShowGraph" IsChecked="true" Content="{x:Static res:Resources.ShowGraph}" Checked='ShowGraph_Checked' Unchecked="ShowGraph_Checked" Margin="15,2,15,0"  />
+                                        <CheckBox x:Name="CalculateEquations" IsChecked="true" Content="{x:Static res:Resources.CalculateEquations}" Checked='CalculateEquations_Checked' Unchecked="CalculateEquations_Checked" Margin="15,2,15,0"  />
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="4" Grid.Row="2"  Orientation="Vertical">
+                                        <CheckBox x:Name="ShowCharts" IsChecked="true" Content="{x:Static res:Resources.ShowCharts}" Checked='ShowCharts_Checked' Unchecked="ShowCharts_Checked" Margin="15,2,15,0"  />
+
+                                        <Grid Margin="10,10,10,10" >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static res:Resources.Step}"></TextBlock>
+                                            <TextBox Grid.Row="0" Margin="10,0,5,5"  Grid.Column="1"  Name="Step" Text="10" VerticalAlignment="Top"/>
+
+                                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static res:Resources.Max}" ></TextBlock>
+                                            <TextBox Grid.Row="1" Margin="10,0,5,5"  Grid.Column="1" Name="MaxTime" Text="210"/>
+
+                                        
+                                        </Grid>
+                          
+                                          
+                                    </StackPanel>
+
+
+
+                                    <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Column="1" Grid.RowSpan="3"  Height="140" Margin="10,10,10,10" Name="listView1" VerticalAlignment="Top"  ItemsSource="{Binding Source={x:Static presenters:Path.LogFormElements}}">
+                                       
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn  Width="250" Header="{x:Static res:Resources.LogHeader}" DisplayMemberBinding="{Binding}" />
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+
+
+                                    <Border CornerRadius="10" Grid.Column="5" Grid.RowSpan="3" Margin="10,10,10,10"  BorderBrush="DarkGray" BorderThickness="2">
+                                        <Border.Style>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=subsystem, Path=SelectedModule}" Value="{x:Null}">
+                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+                                        <Grid Margin="3" DataContext="{Binding Path={x:Static presenters:Module.SelectedModule}}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <StackPanel HorizontalAlignment="Center" Grid.ColumnSpan="2" Grid.Row="0">
+                                                <TextBlock Padding="0,5,0,5"  Text="NAME"/>
+                                            </StackPanel>
+                                            <TextBlock Padding="0,5,0,0"  Grid.Column="0" Grid.Row="1" Text="λ"/>
+                                            <TextBlock Padding="0,5,0,0"  Grid.Column="0"  Grid.Row="2" Text="μ"/>
+                                            <TextBlock Padding="0,5,0,0" Grid.Column="0"  Grid.Row="3" Text="repairs"/>
+                                    
+                                            <TextBox Grid.Column="1"  Grid.Row="1" Text="{Binding ElementName=subsystem, Path=SelectedModule.Lambda, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+                                            <TextBox Grid.Column="1"  Grid.Row="2" Text="{Binding ElementName=subsystem, Path=SelectedModule.Mu, Mode=TwoWay}"/>
+                                            <TextBox Grid.Column="1"  Grid.Row="3" Text="{Binding ElementName=subsystem, Path=SelectedModule.RepairCount, Mode=TwoWay}"/>
+                                      
+                                        </Grid>
+                                    </Border>
+                                    <StackPanel Grid.Column="6" Grid.RowSpan="5" Orientation="Vertical">
+                                        <Button  x:Name="Remove"  Margin="10,10,10,10" Click="Click" Content="{x:Static res:Resources.GetCondition}" />
+                                        <TextBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+         ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"  AcceptsReturn="True" Height="90" x:Name="Formula" Margin="10,10,10,10" Width="Auto" FontSize="16px" Foreground="Black"  Background="LightGray"  ></TextBox>
+                                    </StackPanel>
+
+                                </Grid>
+                            </Grid>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Style>
+</Window>

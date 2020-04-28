@@ -1,0 +1,202 @@
+D:\Viper last\GitProject\bin\Debug\VIPER.exe.config
+D:\Viper last\GitProject\obj\Debug\Interop.MLApp.dll
+D:\Viper last\GitProject\obj\Debug\VIPER.csproj.ResolveComReference.cache
+D:\Viper last\GitProject\obj\Debug\VIPER.exe
+D:\Viper last\GitProject\obj\Debug\VIPER.pdb
+D:\Viper last\GitProject\bin\Debug\VIPER.exe
+D:\Viper last\GitProject\bin\Debug\VIPER.pdb
+D:\Viper last\GitProject\bin\Debug\uk-UA\VIPER.resources.dll
+D:\Viper last\GitProject\bin\Debug\CloneExtensions.dll
+D:\Viper last\GitProject\bin\Debug\DynamicDataDisplay.dll
+D:\Viper last\GitProject\bin\Debug\Newtonsoft.Json.dll
+D:\Viper last\GitProject\bin\Debug\System.Linq.Dynamic.dll
+D:\Viper last\GitProject\bin\Debug\WolframAPI.dll
+D:\Viper last\GitProject\bin\Debug\Newtonsoft.Json.xml
+D:\Viper last\GitProject\obj\Debug\VIPER.csprojResolveAssemblyReference.cache
+D:\Viper last\GitProject\obj\Debug\ReliabilityWindows\ReliabilityWindow.baml
+D:\Viper last\GitProject\obj\Debug\Styles\MainWindowsStyle.baml
+D:\Viper last\GitProject\obj\Debug\App.baml
+D:\Viper last\GitProject\obj\Debug\Graph\Window\GraphWindow.g.cs
+D:\Viper last\GitProject\obj\Debug\ReliabilityWindows\ReliabilityWindow.g.cs
+D:\Viper last\GitProject\obj\Debug\MainWindow.g.cs
+D:\Viper last\GitProject\obj\Debug\App.g.cs
+D:\Viper last\GitProject\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Viper last\GitProject\obj\Debug\VIPER_MarkupCompile.cache
+D:\Viper last\GitProject\obj\Debug\VIPER_MarkupCompile.lref
+D:\Viper last\GitProject\obj\Debug\Graph\Window\GraphWindow.baml
+D:\Viper last\GitProject\obj\Debug\Styles\ConnectionLineStyle.baml
+D:\Viper last\GitProject\obj\Debug\Styles\LineResizerStyle.baml
+D:\Viper last\GitProject\obj\Debug\Styles\ModuleStyle.baml
+D:\Viper last\GitProject\obj\Debug\MainWindow.baml
+D:\Viper last\GitProject\obj\Debug\Styles\NodeEndStyle.baml
+D:\Viper last\GitProject\obj\Debug\Styles\NodeStartStyle.baml
+D:\Viper last\GitProject\obj\Debug\Styles\NodeStyle.baml
+D:\Viper last\GitProject\obj\Debug\Styles\SubsystemStyle.baml
+D:\Viper last\GitProject\obj\Debug\VIPER.g.resources
+D:\Viper last\GitProject\obj\Debug\VIPER.Properties.Resources.resources
+D:\Viper last\GitProject\obj\Debug\VIPER.Properties.Resources.uk-UA.resources
+D:\Viper last\GitProject\obj\Debug\VIPER.csproj.GenerateResource.Cache
+D:\Viper last\GitProject\obj\Debug\uk-UA\VIPER.resources.dll
+G:\Viper last\GitProject\obj\Debug\VIPER.csprojAssemblyReference.cache
+G:\Viper last\GitProject\obj\Debug\Interop.MLApp.dll
+G:\Viper last\GitProject\obj\Debug\VIPER.csproj.ResolveComReference.cache
+G:\Viper last\GitProject\obj\Debug\ReliabilityWindows\ReliabilityWindow.baml
+G:\Viper last\GitProject\obj\Debug\Styles\MainWindowsStyle.baml
+G:\Viper last\GitProject\obj\Debug\App.baml
+G:\Viper last\GitProject\obj\Debug\Graph\Window\GraphWindow.g.cs
+G:\Viper last\GitProject\obj\Debug\ReliabilityWindows\ReliabilityWindow.g.cs
+G:\Viper last\GitProject\obj\Debug\MainWindow.g.cs
+G:\Viper last\GitProject\obj\Debug\App.g.cs
+G:\Viper last\GitProject\obj\Debug\GeneratedInternalTypeHelper.g.cs
+G:\Viper last\GitProject\obj\Debug\VIPER_MarkupCompile.cache
+G:\Viper last\GitProject\obj\Debug\VIPER_MarkupCompile.lref
+G:\Viper last\GitProject\obj\Debug\VIPER.exe
+G:\Viper last\GitProject\obj\Debug\VIPER.pdb
+G:\Viper last\GitProject\bin\Debug\VIPER.exe.config
+G:\Viper last\GitProject\bin\Debug\VIPER.exe
+G:\Viper last\GitProject\bin\Debug\VIPER.pdb
+G:\Viper last\GitProject\bin\Debug\uk-UA\VIPER.resources.dll
+G:\Viper last\GitProject\bin\Debug\CloneExtensions.dll
+G:\Viper last\GitProject\bin\Debug\DynamicDataDisplay.dll
+G:\Viper last\GitProject\bin\Debug\Newtonsoft.Json.dll
+G:\Viper last\GitProject\bin\Debug\System.Linq.Dynamic.dll
+G:\Viper last\GitProject\bin\Debug\WolframAPI.dll
+G:\Viper last\GitProject\bin\Debug\Newtonsoft.Json.xml
+G:\Viper last\GitProject\obj\Debug\Graph\Window\GraphWindow.baml
+G:\Viper last\GitProject\obj\Debug\Styles\ConnectionLineStyle.baml
+G:\Viper last\GitProject\obj\Debug\Styles\LineResizerStyle.baml
+G:\Viper last\GitProject\obj\Debug\Styles\ModuleStyle.baml
+G:\Viper last\GitProject\obj\Debug\MainWindow.baml
+G:\Viper last\GitProject\obj\Debug\Styles\NodeEndStyle.baml
+G:\Viper last\GitProject\obj\Debug\Styles\NodeStartStyle.baml
+G:\Viper last\GitProject\obj\Debug\Styles\NodeStyle.baml
+G:\Viper last\GitProject\obj\Debug\Styles\SubsystemStyle.baml
+G:\Viper last\GitProject\obj\Debug\VIPER.g.resources
+G:\Viper last\GitProject\obj\Debug\VIPER.Properties.Resources.resources
+G:\Viper last\GitProject\obj\Debug\VIPER.Properties.Resources.uk-UA.resources
+G:\Viper last\GitProject\obj\Debug\VIPER.csproj.GenerateResource.cache
+G:\Viper last\GitProject\obj\Debug\VIPER.csproj.CoreCompileInputs.cache
+G:\Viper last\GitProject\obj\Debug\uk-UA\VIPER.resources.dll
+G:\Viper last\GitProject\obj\Debug\VIPER.csproj.CopyComplete
+E:\Viper last\GitProject\bin\Debug\VIPER.exe.config
+E:\Viper last\GitProject\bin\Debug\VIPER.exe
+E:\Viper last\GitProject\bin\Debug\VIPER.pdb
+E:\Viper last\GitProject\bin\Debug\uk-UA\VIPER.resources.dll
+E:\Viper last\GitProject\bin\Debug\CloneExtensions.dll
+E:\Viper last\GitProject\bin\Debug\DynamicDataDisplay.dll
+E:\Viper last\GitProject\bin\Debug\Newtonsoft.Json.dll
+E:\Viper last\GitProject\bin\Debug\System.Linq.Dynamic.dll
+E:\Viper last\GitProject\bin\Debug\WolframAPI.dll
+E:\Viper last\GitProject\bin\Debug\Newtonsoft.Json.xml
+E:\Viper last\GitProject\obj\Debug\VIPER.csprojAssemblyReference.cache
+E:\Viper last\GitProject\obj\Debug\Interop.MLApp.dll
+E:\Viper last\GitProject\obj\Debug\VIPER.csproj.ResolveComReference.cache
+E:\Viper last\GitProject\obj\Debug\ReliabilityWindows\ReliabilityWindow.baml
+E:\Viper last\GitProject\obj\Debug\Styles\MainWindowsStyle.baml
+E:\Viper last\GitProject\obj\Debug\App.baml
+E:\Viper last\GitProject\obj\Debug\Graph\Window\GraphWindow.g.cs
+E:\Viper last\GitProject\obj\Debug\ReliabilityWindows\ReliabilityWindow.g.cs
+E:\Viper last\GitProject\obj\Debug\MainWindow.g.cs
+E:\Viper last\GitProject\obj\Debug\App.g.cs
+E:\Viper last\GitProject\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\Viper last\GitProject\obj\Debug\VIPER_MarkupCompile.cache
+E:\Viper last\GitProject\obj\Debug\VIPER_MarkupCompile.lref
+E:\Viper last\GitProject\obj\Debug\Graph\Window\GraphWindow.baml
+E:\Viper last\GitProject\obj\Debug\Styles\ConnectionLineStyle.baml
+E:\Viper last\GitProject\obj\Debug\Styles\LineResizerStyle.baml
+E:\Viper last\GitProject\obj\Debug\Styles\ModuleStyle.baml
+E:\Viper last\GitProject\obj\Debug\MainWindow.baml
+E:\Viper last\GitProject\obj\Debug\Styles\NodeEndStyle.baml
+E:\Viper last\GitProject\obj\Debug\Styles\NodeStartStyle.baml
+E:\Viper last\GitProject\obj\Debug\Styles\NodeStyle.baml
+E:\Viper last\GitProject\obj\Debug\Styles\SubsystemStyle.baml
+E:\Viper last\GitProject\obj\Debug\VIPER.g.resources
+E:\Viper last\GitProject\obj\Debug\VIPER.Properties.Resources.resources
+E:\Viper last\GitProject\obj\Debug\VIPER.Properties.Resources.uk-UA.resources
+E:\Viper last\GitProject\obj\Debug\VIPER.csproj.GenerateResource.cache
+E:\Viper last\GitProject\obj\Debug\VIPER.csproj.CoreCompileInputs.cache
+E:\Viper last\GitProject\obj\Debug\uk-UA\VIPER.resources.dll
+E:\Viper last\GitProject\obj\Debug\VIPER.csproj.CopyComplete
+E:\Viper last\GitProject\obj\Debug\VIPER.exe
+E:\Viper last\GitProject\obj\Debug\VIPER.pdb
+G:\Viper last\Viber final\bin\Debug\VIPER.exe.config
+G:\Viper last\Viber final\bin\Debug\VIPER.exe
+G:\Viper last\Viber final\bin\Debug\VIPER.pdb
+G:\Viper last\Viber final\bin\Debug\uk-UA\VIPER.resources.dll
+G:\Viper last\Viber final\bin\Debug\CloneExtensions.dll
+G:\Viper last\Viber final\bin\Debug\DynamicDataDisplay.dll
+G:\Viper last\Viber final\bin\Debug\Newtonsoft.Json.dll
+G:\Viper last\Viber final\bin\Debug\System.Linq.Dynamic.dll
+G:\Viper last\Viber final\bin\Debug\WolframAPI.dll
+G:\Viper last\Viber final\bin\Debug\Newtonsoft.Json.xml
+G:\Viper last\Viber final\obj\Debug\VIPER.csprojAssemblyReference.cache
+G:\Viper last\Viber final\obj\Debug\Interop.MLApp.dll
+G:\Viper last\Viber final\obj\Debug\VIPER.csproj.ResolveComReference.cache
+G:\Viper last\Viber final\obj\Debug\ReliabilityWindows\ReliabilityWindow.baml
+G:\Viper last\Viber final\obj\Debug\Styles\MainWindowsStyle.baml
+G:\Viper last\Viber final\obj\Debug\App.baml
+G:\Viper last\Viber final\obj\Debug\Graph\Window\GraphWindow.g.cs
+G:\Viper last\Viber final\obj\Debug\ReliabilityWindows\ReliabilityWindow.g.cs
+G:\Viper last\Viber final\obj\Debug\MainWindow.g.cs
+G:\Viper last\Viber final\obj\Debug\App.g.cs
+G:\Viper last\Viber final\obj\Debug\GeneratedInternalTypeHelper.g.cs
+G:\Viper last\Viber final\obj\Debug\VIPER_MarkupCompile.cache
+G:\Viper last\Viber final\obj\Debug\VIPER_MarkupCompile.lref
+G:\Viper last\Viber final\obj\Debug\Graph\Window\GraphWindow.baml
+G:\Viper last\Viber final\obj\Debug\Styles\ConnectionLineStyle.baml
+G:\Viper last\Viber final\obj\Debug\Styles\LineResizerStyle.baml
+G:\Viper last\Viber final\obj\Debug\Styles\ModuleStyle.baml
+G:\Viper last\Viber final\obj\Debug\MainWindow.baml
+G:\Viper last\Viber final\obj\Debug\Styles\NodeEndStyle.baml
+G:\Viper last\Viber final\obj\Debug\Styles\NodeStartStyle.baml
+G:\Viper last\Viber final\obj\Debug\Styles\NodeStyle.baml
+G:\Viper last\Viber final\obj\Debug\Styles\SubsystemStyle.baml
+G:\Viper last\Viber final\obj\Debug\VIPER.g.resources
+G:\Viper last\Viber final\obj\Debug\VIPER.Properties.Resources.resources
+G:\Viper last\Viber final\obj\Debug\VIPER.Properties.Resources.uk-UA.resources
+G:\Viper last\Viber final\obj\Debug\VIPER.csproj.GenerateResource.cache
+G:\Viper last\Viber final\obj\Debug\VIPER.csproj.CoreCompileInputs.cache
+G:\Viper last\Viber final\obj\Debug\uk-UA\VIPER.resources.dll
+G:\Viper last\Viber final\obj\Debug\VIPER.csproj.CopyComplete
+G:\Viper last\Viber final\obj\Debug\VIPER.exe
+G:\Viper last\Viber final\obj\Debug\VIPER.pdb
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\VIPER.csprojAssemblyReference.cache
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\VIPER.csproj.ResolveComReference.cache
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\ReliabilityWindows\ReliabilityWindow.baml
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\Styles\MainWindowsStyle.baml
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\App.baml
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\Graph\Window\GraphWindow.g.cs
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\ReliabilityWindows\ReliabilityWindow.g.cs
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\MainWindow.g.cs
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\App.g.cs
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\VIPER_MarkupCompile.cache
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\VIPER_MarkupCompile.lref
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\VIPER.exe
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\VIPER.pdb
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\bin\Debug\VIPER.exe.config
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\bin\Debug\VIPER.exe
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\bin\Debug\VIPER.pdb
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\bin\Debug\uk-UA\VIPER.resources.dll
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\bin\Debug\CloneExtensions.dll
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\bin\Debug\DynamicDataDisplay.dll
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\bin\Debug\Newtonsoft.Json.dll
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\bin\Debug\System.Linq.Dynamic.dll
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\bin\Debug\WolframAPI.dll
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\bin\Debug\Newtonsoft.Json.xml
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\Graph\Window\GraphWindow.baml
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\Styles\ConnectionLineStyle.baml
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\Styles\LineResizerStyle.baml
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\Styles\ModuleStyle.baml
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\MainWindow.baml
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\Styles\NodeEndStyle.baml
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\Styles\NodeStartStyle.baml
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\Styles\NodeStyle.baml
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\Styles\SubsystemStyle.baml
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\VIPER.g.resources
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\VIPER.Properties.Resources.resources
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\VIPER.Properties.Resources.uk-UA.resources
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\VIPER.csproj.GenerateResource.cache
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\VIPER.csproj.CoreCompileInputs.cache
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\uk-UA\VIPER.resources.dll
+D:\Дисертація\Viper\Symets 13-11-2019\Viber project\obj\Debug\VIPER.csproj.CopyComplete

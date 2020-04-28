@@ -1,0 +1,104 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <DrawingBrush x:Key="AddModuleButton_Icon" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F0 M 10 20 A 2 2 1 1 1 0 20 A 2 2 1 1 1 10 20 L 20 20 L 20 15 A 10 10 0 0  1 30 5 L 70 5 A 10 10 0 0 1 80 15 L 80 20 L 90 20 A 2 2 1 1 1 100 20 A 2 2 1 1 1 90 20 L 80 20 L 80 25 A 10 10 1 0 1 70 35 L 30 35 A 10 10 0 0 1 20 25 L 20 20 M 3 20 A 1 1 0 1 1 7 20 A 1 1 0 1 1 3 20 M 93 20 A 1 1 0 1 1 97 20 A 1 1 0 1 1 93 20  Z"> 
+                        <GeometryDrawing.Pen>
+                            <Pen Thickness="1" >
+                                <Pen.Brush>
+                                    <SolidColorBrush Color="Black" />
+                                </Pen.Brush>
+                            </Pen>
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="AddLineButton_Icon" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F0 M 10 10 A 2 2 1 1 1 0 10 A 2 2 1 1 1 10 10 L 38.5 10 L 46.5 12 L 38.5 14 L 46.5 16 L 38.5 18 L 46.5 20 L 38.5 22 L 46.5 24 L 38.5 26 L 46.5 28 L 38.5 30 L 75 30 A 2 2 1 1 1 85 30 A 2 2 1 1 1 75 30 M 3 10 A 1 1 0 1 1 7 10 A 1 1 0 1 1 3 10 M 78 30 A 1 1 0 1 1 82 30 A 1 1 0 1 1 78 30  Z"> 
+                        <GeometryDrawing.Pen>
+                            <Pen Thickness="1" >
+                                <Pen.Brush>
+                                    <SolidColorBrush Color="Black" />
+                                </Pen.Brush>
+                            </Pen>
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+
+    <DrawingBrush x:Key="AddNodeButton_Icon" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F0 M 10 20 A 2 2 1 1 1 0 20 A 2 2 1 1 1 10 20 L 20 20  A 1 1 1 1 1 65 20 A 1 1 1 1 1 20 20 M 65 20 L 75 20 A 2 2 1 1 1 85 20 A 2 2 1 1 1 75 20 M 3 20 A 1 1 0 1 1 7 20 A 1 1 0 1 1 3 20 M 78 20 A 1 1 0 1 1 82 20 A 1 1 0 1 1 78 20  Z">
+                        <GeometryDrawing.Pen>
+                            <Pen Thickness="1" >
+                                <Pen.Brush>
+                                    <SolidColorBrush Color="Black" />
+                                </Pen.Brush>
+                            </Pen>
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                    <GeometryDrawing Geometry="F0 M 30 20 A 1 1 1 1 1 55 20 A 1 1 1 1 1 30 20 M 65 20 Z">
+                        <GeometryDrawing.Pen>
+                            <Pen Thickness="1" >
+                                <Pen.Brush>
+                                    <SolidColorBrush Color="Black" />
+                                </Pen.Brush>
+                            </Pen>
+                        </GeometryDrawing.Pen>
+                        <GeometryDrawing.Brush>
+                            <SolidColorBrush Color="Black"/>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+
+    <Style x:Key="AddElementButtonStyle" TargetType="{x:Type RadioButton}">
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Template">
+            <Setter.Value> 
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.Style>
+                                <Style>
+                                    <Style.Triggers>
+                                        <Trigger Property="UIElement.IsMouseOver" Value="True">
+                                            <Setter Property="Panel.Background" Value="WhiteSmoke"/>
+                                        </Trigger>
+                                        <DataTrigger  Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}" Value="True">
+                                            <Setter Property="Panel.Background" Value="Gray"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="8*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Fill="{Binding Path=Background, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}" Grid.Column="1"/>
+                        </Grid>
+                    </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    
+    
+</ResourceDictionary>
