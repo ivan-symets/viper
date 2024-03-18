@@ -7,29 +7,18 @@ using VIPER.Presenters;
 
 namespace VIPER.Logic
 {
-      class WorkabilityConditionGenerator
+    class WorkabilityConditionGenerator
     {
-         List<Segment> Segments { get; set; } = new List<Segment>();
-
-
-
-        public  string Operation { get; set; } = String.Empty;
-
-        public string WorkabilityCondition { get; set; } = String.Empty;
-
+        public List<Segment> Segments { get; set; } = new List<Segment>();
         public WorkabilityConditionGenerator(List<Segment> segments)
         {
             Segments = segments;
         }
 
         //метод визначення умови працездатності системи
-        public  string GenerateCondition()
+        public string GenerateCondition()
         {
             var currentSegments = this.Segments;
-
-
-            //видалення порожніх сегментів
-         //   currentSegments = MergeEmptySegments(currentSegments);
 
             //головний цикл з використанням алгоритмів послідовного і паралельного злиття
             do
@@ -42,7 +31,6 @@ namespace VIPER.Logic
             } while (currentSegments.Count != 1);
 
             string condition = ($"({currentSegments[0].SubCondition})");
-            this.WorkabilityCondition = condition;
             Lines.LineBuilders.Clear();
 
             ConfigurationHelper.CountGetFormula = 0;
@@ -52,34 +40,34 @@ namespace VIPER.Logic
         }
 
         //метод видалення порожніх вузлів
-          List<Segment> MergeEmptySegments(List<Segment> segments)
+        List<Segment> MergeEmptySegments(List<Segment> segments)
         {
             var emptySegmentIds = new List<int>();
 
             // знаходження вузлів, які мають порожню  умову працездатності і їх об*єднання з суміжними
             foreach (var emptySegment in segments.Where(w => !Convert.ToBoolean(w.Modules.Count)))
-            { 
-                    foreach (var segment in segments.Where(w => Convert.ToBoolean(w.Modules.Count)))
+            {
+                foreach (var segment in segments.Where(w => Convert.ToBoolean(w.Modules.Count)))
+                {
+
+                    if (emptySegment.StartNode == segment.EndNode)
                     {
-
-                        if (emptySegment.StartNode == segment.EndNode)
-                        {
-                            segment.EndNode = emptySegment.EndNode;
-                            emptySegmentIds.Add(emptySegment.Id);
-                        }
-
-                        if (emptySegment.EndNode == segment.StartNode)
-                        {
-                            segment.StartNode = emptySegment.StartNode;
-                            emptySegmentIds.Add(emptySegment.Id);
-                        }
+                        segment.EndNode = emptySegment.EndNode;
+                        emptySegmentIds.Add(emptySegment.Id);
                     }
-                
+
+                    if (emptySegment.EndNode == segment.StartNode)
+                    {
+                        segment.StartNode = emptySegment.StartNode;
+                        emptySegmentIds.Add(emptySegment.Id);
+                    }
+                }
+
             }
-            return segments.Where(w=>!emptySegmentIds.Contains(w.Id)).ToList();
+            return segments.Where(w => !emptySegmentIds.Contains(w.Id)).ToList();
         }
         //алгоритм послідовного злиття елементів
-          List<Segment> MergeConsistentSegments(List<Segment> segments)
+        List<Segment> MergeConsistentSegments(List<Segment> segments)
         {
             var mergedSegmentIds = new List<int>();
             segments = segments.OrderBy(o => o.Id).ToList();
@@ -112,7 +100,8 @@ namespace VIPER.Logic
                         {
                             currentSegment.SubCondition = subCondition2;
                             continue;
-                        } else if (String.IsNullOrEmpty(subCondition2))
+                        }
+                        else if (String.IsNullOrEmpty(subCondition2))
                         {
                             currentSegment.SubCondition = subCondition1;
                             continue;
@@ -125,8 +114,6 @@ namespace VIPER.Logic
                         if (subCondition2.Split(expressionOr, System.StringSplitOptions.RemoveEmptyEntries).Count() > 1)
                             subCondition2 = $"({subCondition2})";
 
-                    //    var subCondition1LastOperation= subCondition1
-
                         currentSegment.SubCondition = $"{(subCondition1)} {LogicOperation.AND} {subCondition2}";
 
                         if (subCondition1 == "")
@@ -135,25 +122,25 @@ namespace VIPER.Logic
                         if (subCondition2 == "")
                             currentSegment.SubCondition = subCondition1;
 
-                 
+
                     }
                 }
             }
             return segments.Where(w => !mergedSegmentIds.Contains(w.Id)).ToList();
         }
         //алгоритм паралельного злиття елементів
-          List<Segment> MergeParallelSegments(List<Segment> segments)
+        List<Segment> MergeParallelSegments(List<Segment> segments)
         {
             var mergedSegmentIds = new List<int>();
 
             segments = segments.OrderBy(o => o.Id).ToList();
 
-        foreach (var currentSegment in segments)
+            foreach (var currentSegment in segments)
             {
                 foreach (var loopSegment in segments)
                 {
                     //якщо існують два або більше сегментів з однаковими початковими і кінцевими вузлами, то треба злити такі вузли паралельно
-                    if (currentSegment.Id<loopSegment.Id && currentSegment.StartNode == loopSegment.StartNode && currentSegment.EndNode == loopSegment.EndNode)
+                    if (currentSegment.Id < loopSegment.Id && currentSegment.StartNode == loopSegment.StartNode && currentSegment.EndNode == loopSegment.EndNode)
                     {
                         String[] expressionAnd = { "AND" };
                         String[] expressionOr = { "OR" };

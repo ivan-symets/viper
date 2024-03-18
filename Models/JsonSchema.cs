@@ -79,10 +79,6 @@ namespace VIPER.Models
 
         public Point End { get; set; }
 
-        // public JsonSchemaObject Element1 { get; set; }
-        //public JsonSchemaObject Element2 { get; set; }
-
-
         public string Element1Name { get; set; }
         public string Element2Name { get; set; }
 
@@ -93,16 +89,11 @@ namespace VIPER.Models
             this.Type = CreativeMode.Line;
             this.Name = connectionLine.Name;
 
-            // this.PathGeometry = connectionLine.PathGeometry;
             this.Start = connectionLine.Start;
             this.End = connectionLine.End;
 
             this.Element1Name = connectionLine.Element1?.Name;
             this.Element2Name = connectionLine.Element2?.Name;
-
-
-            // this.Element1 = connectionLine.Element1 is Module ? new JsonSchemaModule(connectionLine.Element1 as Module): null;
-            // this.Element2 = connectionLine.Element2 is Module ? new JsonSchemaModule(connectionLine.Element2 as Module) : null;
         }
 
         public ConnectionLine ToConnectionLine()

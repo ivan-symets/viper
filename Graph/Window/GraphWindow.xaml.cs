@@ -29,23 +29,17 @@ namespace VIPER.Graph.Window
     /// <summary>
     /// Interaction logic for GraphWindow.xaml
     /// </summary>
-    public partial class GraphWindow 
+    public partial class GraphWindow
     {
-
         public DockPanel zoomPanel;
-     
-
-
         public SystemState SystemState { get; set; }
-
-
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-          
+
             zoomPanel = base.GetTemplateChild("ZoomPanel") as DockPanel;
-    
+
         }
 
         public GraphWindow()
@@ -57,10 +51,6 @@ namespace VIPER.Graph.Window
 
                 canvas.Children.Clear();
                 canvasGraph.Children.Clear();
-
-
-            
-
 
                 if (ConfigurationHelper.ComputeCharts || ConfigurationHelper.ComputeGraph || ConfigurationHelper.ComputeEquations)
                 {
@@ -108,90 +98,67 @@ namespace VIPER.Graph.Window
 
                 if (ConfigurationHelper.ComputeCharts)
                 {
-               
-
-
                     System.Diagnostics.Stopwatch myStopwatch = new System.Diagnostics.Stopwatch();
                     myStopwatch.Start();
-                  
+
 
                     List<double> workValues = new List<double>();
                     List<double> downTimeValues = new List<double>();
                     List<double> errorTimeValues = new List<double>();
                     List<double> timeList = new List<double>();
-                  
-
-                        baseValues[0] = 1;
-
-                        System.Diagnostics.Stopwatch myStopwatch1 = new System.Diagnostics.Stopwatch();
-                        myStopwatch1.Start();
-
-                          //   var result1 = ConfigurationHelper.MatLabContext.ComputeDifferentialEquations(equations, baseValues, ConfigurationHelper.Step, 0, (int)ConfigurationHelper.MaxTime);
-
-                        //var aaa = $"F=@(t,p) [{String.Join("; ", equations).Replace(",", ".")}]; [t p]=ode45(F,[{1} : {1} : {1}], [{String.Join(" ", baseValues)}]);";
-                        myStopwatch1.Stop();
 
 
+                    baseValues[0] = 1;
 
-                        System.Diagnostics.Stopwatch myStopwatch2 = new System.Diagnostics.Stopwatch();
-                        myStopwatch2.Start();
+                    var result = new List<List<double>>();
 
-                        var result1 = new List<List<double>>();
+                    //var result1 = ConfigurationHelper.MatLabContext.ComputeDifferentialEquations(equations, baseValues, ConfigurationHelper.Step, 0, (int)ConfigurationHelper.MaxTime);
 
-                        //var result1 = ConfigurationHelper.MatLabContext.ComputeDifferentialEquations(equations, baseValues, ConfigurationHelper.Step, 0, (int)ConfigurationHelper.MaxTime);
+                    var resultRK = RungeKuttaMethod.RungeKuttaMethods(equations.Count, (int)ConfigurationHelper.Step, (int)ConfigurationHelper.MaxTime, equationCoefficients, baseValues.Select(s => (double)s).ToArray());
 
-                        var result12 = RungeKuttaMethod.RungeKuttaMethods(equations.Count, (int)ConfigurationHelper.Step, (int)ConfigurationHelper.MaxTime, equationCoefficients, baseValues.Select(s => (double)s).ToArray());
+                    var baseValuesq = baseValues.Select(s => (double)s).ToList();
 
-                        var baseValuesq = baseValues.Select(s => (double)s).ToList();
+                    result.Add(baseValuesq);
+                    result.AddRange(resultRK);
+  
+                    double startTime = 0;
 
-                        result1.Add(baseValuesq);
-                        result1.AddRange(result12);
-                        myStopwatch2.Stop();
+                    // Add columns
+                    var gridView = new GridView();
+                    this.listView.View = gridView;
+                    gridView.Columns.Add(new GridViewColumn
+                    {
+                        Header = $"{Properties.Resources.Time}",
+                        DisplayMemberBinding = new Binding($"{Properties.Resources.Time}")
+                    });
 
 
-
-
-                        double startTime = 0;
-
-
-                        // Add columns
-                        var gridView = new GridView();
-                        this.listView.View = gridView;
+                    for (var i = 0; i <= SystemState.SystemStates.Count; i++)
+                    {
                         gridView.Columns.Add(new GridViewColumn
                         {
-                            Header = $"{Properties.Resources.Time}",
-                            DisplayMemberBinding = new Binding($"{Properties.Resources.Time}")
+                            Header = $"S{i + 1}",
+                            DisplayMemberBinding = new Binding($"S{i + 1}")
                         });
+                    }
 
-             
-                       for(var i=0;i<= SystemState.SystemStates.Count;i++)
-                        {
-                            gridView.Columns.Add(new GridViewColumn
-                            {
-                                Header = $"S{i+1}",
-                                DisplayMemberBinding = new Binding($"S{i+1}")
-                            });
+                    gridView.Columns.Add(new GridViewColumn
+                    {
+                        Header = $"{Properties.Resources.SumWorkingStates}",
+                        DisplayMemberBinding = new Binding($"Working")
+                    });
 
+                    gridView.Columns.Add(new GridViewColumn
+                    {
+                        Header = $"{Properties.Resources.SumDownTiimeStates}",
+                        DisplayMemberBinding = new Binding($"Downtime")
+                    });
 
-                        }
-
-                        gridView.Columns.Add(new GridViewColumn
-                        {
-                            Header = $"{Properties.Resources.SumWorkingStates}",
-                            DisplayMemberBinding = new Binding($"Working")
-                        });
-
-                        gridView.Columns.Add(new GridViewColumn
-                        {
-                            Header = $"{Properties.Resources.SumDownTiimeStates}",
-                            DisplayMemberBinding = new Binding($"Downtime")
-                        });
-
-                        gridView.Columns.Add(new GridViewColumn
-                        {
-                            Header = $"{Properties.Resources.SumRefusalStates}",
-                            DisplayMemberBinding = new Binding($"Refusal")
-                        });
+                    gridView.Columns.Add(new GridViewColumn
+                    {
+                        Header = $"{Properties.Resources.SumRefusalStates}",
+                        DisplayMemberBinding = new Binding($"Refusal")
+                    });
 
 
                     var workDictionary = new Dictionary<double, double>();
@@ -199,73 +166,45 @@ namespace VIPER.Graph.Window
                     var refusalDictionary = new Dictionary<double, double>();
 
                     double indexCount = 0;
-                        foreach (var item in result1)
+                    foreach (var item in result)
+                    {
+                        var ListViewObject = new System.Dynamic.ExpandoObject() as IDictionary<string, Object>;
+
+                        timeList.Add(startTime);
+                        double workValue = 0;
+                        double downTimeValue = 0;
+
+                        for (var index = 0; index < item.Count; index++)
                         {
-                            var ListViewObject = new System.Dynamic.ExpandoObject() as IDictionary<string, Object>;
+                            if (SystemState.WorkStateIndexList.Contains(index))
+                                workValue += item[index];
+                            if (SystemState.DownTimeStateIndexList.Contains(index))
+                                downTimeValue += item[index];
 
-                            timeList.Add(startTime);
-                            double workValue = 0;
-                            double downTimeValue = 0;
-
-                            for (var index = 0; index < item.Count; index++)
-                            {
-                                if (SystemState.WorkStateIndexList.Contains(index))
-                                    workValue += item[index];
-                                if (SystemState.DownTimeStateIndexList.Contains(index))
-                                    downTimeValue += item[index];
-
-                                ListViewObject.Add($"S{index + 1}", Math.Round(item[index], 15));
-                            }
-                            workValues.Add(workValue);
-                            downTimeValues.Add(downTimeValue);
-                            var sum = downTimeValue + workValue;
-                            errorTimeValues.Add(1 - sum);
-                            workDictionary.Add(indexCount, workValue);
-                            downTimeDictionary.Add(indexCount, downTimeValue);
-                        refusalDictionary.Add(indexCount, 1- sum);
+                            ListViewObject.Add($"S{index + 1}", Math.Round(item[index], 15));
+                        }
+                        workValues.Add(workValue);
+                        downTimeValues.Add(downTimeValue);
+                        var sum = downTimeValue + workValue;
+                        errorTimeValues.Add(1 - sum);
+                        workDictionary.Add(indexCount, workValue);
+                        downTimeDictionary.Add(indexCount, downTimeValue);
+                        refusalDictionary.Add(indexCount, 1 - sum);
                         indexCount += ConfigurationHelper.Step;
 
+                        ListViewObject.Add($"{Properties.Resources.Time}", startTime);
 
+                        ListViewObject.Add("Working", Math.Round(workValue, 15));
+                        ListViewObject.Add("Downtime", Math.Round(downTimeValue, 15));
+                        ListViewObject.Add("Refusal", Math.Round(1 - sum, 15));
 
-                            ListViewObject.Add($"{Properties.Resources.Time}", startTime);
+                        // Populate list
+                        this.listView.Items.Add(ListViewObject);
 
-                            ListViewObject.Add("Working", Math.Round(workValue, 15));
-                             ListViewObject.Add("Downtime", Math.Round(downTimeValue, 15));
-                            ListViewObject.Add("Refusal", Math.Round(1 - sum, 15));
-
-
-
-                            // Populate list
-                            this.listView.Items.Add(ListViewObject);
-
-
-
-                            startTime += ConfigurationHelper.Step;
-                        }
-                    
-
-
-
-                   var RectangleMethodWork = Integral.RectangleMethod(workDictionary, 0, ConfigurationHelper.MaxTime, (int)(ConfigurationHelper.MaxTime/ ConfigurationHelper.Step));
-                   var TrapeziumMethodWork = Integral.TrapeziumMethod(workDictionary, 0, ConfigurationHelper.MaxTime, (int)(ConfigurationHelper.MaxTime / ConfigurationHelper.Step));
-
-                   // this.T_work.Content = $"{Properties.Resources.AverageWorkTime} = {Math.Round(TrapeziumMethodWork,6)}";
-
-
-                    var RectangleMethodDownTime = Integral.RectangleMethod(downTimeDictionary, 0, ConfigurationHelper.MaxTime, (int)(ConfigurationHelper.MaxTime / ConfigurationHelper.Step));
-                    var TrapeziumMethodDownTime  = Integral.TrapeziumMethod(downTimeDictionary, 0, ConfigurationHelper.MaxTime, (int)(ConfigurationHelper.MaxTime / ConfigurationHelper.Step));
-
-                   // this.T_down.Content = $"{Properties.Resources.AverageDowntimeTime} = {Math.Round(TrapeziumMethodDownTime, 6)}";
-
-
-                    var RectangleMethodRefusal = Integral.RectangleMethod(refusalDictionary, 0, ConfigurationHelper.MaxTime, (int)(ConfigurationHelper.MaxTime / ConfigurationHelper.Step));
-                    var TrapeziumMethodRefusal = Integral.TrapeziumMethod(refusalDictionary, 0, ConfigurationHelper.MaxTime, (int)(ConfigurationHelper.MaxTime / ConfigurationHelper.Step));
-                  //  this.T_error.Content = $"{Properties.Resources.AverageRefusalTime} = {Math.Round(TrapeziumMethodRefusal, 6)}";
+                        startTime += ConfigurationHelper.Step;
+                    }
 
                     var yDataSource = new EnumerableDataSource<double>(workValues);
-
-                    var suumm = RectangleMethodWork + RectangleMethodDownTime + RectangleMethodRefusal;
-                    var suumm1 = TrapeziumMethodWork + TrapeziumMethodDownTime + TrapeziumMethodRefusal;
 
 
                     yDataSource.SetYMapping(Y => Y);
@@ -275,9 +214,9 @@ namespace VIPER.Graph.Window
 
                     CompositeDataSource compositeDataSource = new CompositeDataSource(xDataSource, yDataSource);
 
-                 //   plotterWork.AddHandler(CircleElementPointMarker.ToolTipTextProperty, s => String.Format("Y-Data : {0}\nX-Data : {1}", s.Y, s.X));
+                    //   plotterWork.AddHandler(CircleElementPointMarker.ToolTipTextProperty, s => String.Format("Y-Data : {0}\nX-Data : {1}", s.Y, s.X));
                     plotterWork.Children.RemoveAll(typeof(LineGraph));
-                    plotterWork.AddLineGraph(compositeDataSource, new Pen(Brushes.Green, 2),  new PenDescription("Work Line"));
+                    plotterWork.AddLineGraph(compositeDataSource, new Pen(Brushes.Green, 2), new PenDescription("Work Line"));
                     plotterWork.FitToView();
 
 
@@ -301,18 +240,18 @@ namespace VIPER.Graph.Window
 
                     compositeDataSource = new CompositeDataSource(xDataSource, yDataSource);
 
-                   // plotterErrorTime.Children.RemoveAll(typeof(LineGraph));
-                   // plotterErrorTime.AddLineGraph(compositeDataSource, new Pen(Brushes.Red, 2), new PenDescription("Error Time Line"));
-                   // plotterErrorTime.FitToView();
+                    // plotterErrorTime.Children.RemoveAll(typeof(LineGraph));
+                    // plotterErrorTime.AddLineGraph(compositeDataSource, new Pen(Brushes.Red, 2), new PenDescription("Error Time Line"));
+                    // plotterErrorTime.FitToView();
 
                     myStopwatch.Stop();
                     var ms = myStopwatch.Elapsed;
                     Presenters.Path.logFormElements.Add($"Get charts of reliability time ex. {ms} ms.");
                 }
-              
+
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 MessageBox.Show(ex.StackTrace);
@@ -321,7 +260,7 @@ namespace VIPER.Graph.Window
 
         private void dateGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
-            e.Row.Header = (e.Row.GetIndex()+1).ToString();
+            e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
 
         private void canvas_MouseDown(object sender, MouseButtonEventArgs e)
@@ -377,15 +316,15 @@ namespace VIPER.Graph.Window
         {
             canvas.Children.Clear();
 
-           var baseStates = SystemState.GetUpStates(currentState);
+            var baseStates = SystemState.GetUpStates(currentState);
 
             var childStates = SystemState.GetChildStates(currentState);
 
             var RectangleWidth = RectangleBaseWidth * currentState.StateElements.Count();
 
-            var maxStateLevel=Math.Max(baseStates.Count, childStates.Count);
+            var maxStateLevel = Math.Max(baseStates.Count, childStates.Count);
 
-            var baseLeft = ((maxStateLevel * (RectangleWidth + 25))/2.0) + 200;
+            var baseLeft = ((maxStateLevel * (RectangleWidth + 25)) / 2.0) + 200;
 
 
             var grid = new Grid();
@@ -442,12 +381,12 @@ namespace VIPER.Graph.Window
                 Canvas.SetTop(grid, recTopPosition);
                 canvas.Children.Add(grid);
 
-                var startPoint = new Point() { X = recLeftPosition + RectangleWidth / 2, Y=recTopPosition + RectangleHeight };
+                var startPoint = new Point() { X = recLeftPosition + RectangleWidth / 2, Y = recTopPosition + RectangleHeight };
                 var endPoint = new Point() { X = baseLeft + RectangleWidth / 2, Y = baseTop };
 
                 canvas.Children.Add(DrawLinkArrow(startPoint, endPoint, colorsLine[currentState.StateType]));
 
-                baseSize--; 
+                baseSize--;
             }
 
             foreach (var childState in childStates)
@@ -465,7 +404,7 @@ namespace VIPER.Graph.Window
                 canvas.Children.Add(grid);
 
                 var startPoint = new Point() { X = baseLeft + RectangleWidth / 2, Y = baseTop + RectangleHeight };
-                var endPoint = new Point() { X = recLeftPosition+ RectangleWidth / 2, Y = recTopPosition };
+                var endPoint = new Point() { X = recLeftPosition + RectangleWidth / 2, Y = recTopPosition };
 
                 canvas.Children.Add(DrawLinkArrow(startPoint, endPoint, colorsLine[childState.StateType]));
 
@@ -473,7 +412,7 @@ namespace VIPER.Graph.Window
             }
         }
 
-        public  Shape DrawLinkArrow(Point p1, Point p2, Brush color)
+        public Shape DrawLinkArrow(Point p1, Point p2, Brush color)
         {
             GeometryGroup lineGroup = new GeometryGroup();
             double theta = Math.Atan2((p2.Y - p1.Y), (p2.X - p1.X)) * 180 / Math.PI;
@@ -520,7 +459,7 @@ namespace VIPER.Graph.Window
         private void CalculateGraph_Click(object sender, RoutedEventArgs e)
         {
 
-           
+
         }
 
 
@@ -528,7 +467,7 @@ namespace VIPER.Graph.Window
         {
             var textBlock = new TextBlock() { Foreground = Brushes.Black, TextAlignment = TextAlignment.Center };
 
-            textBlock.Inlines.Add(new Run() { BaselineAlignment = BaselineAlignment.Superscript, Text = $"{baseState.StateId}", Foreground=Brushes.Red, FontSize = 20 });
+            textBlock.Inlines.Add(new Run() { BaselineAlignment = BaselineAlignment.Superscript, Text = $"{baseState.StateId}", Foreground = Brushes.Red, FontSize = 20 });
             textBlock.Inlines.Add(new Run() { BaselineAlignment = BaselineAlignment.Superscript, Text = $"| {baseState.StateString}", FontSize = 20 });
 
             return textBlock;
@@ -541,7 +480,7 @@ namespace VIPER.Graph.Window
         private void ShowGraph()
         {
 
-            var levelGroups= SystemState.SystemStates.GroupBy(g => g.StateLevel).ToList();
+            var levelGroups = SystemState.SystemStates.GroupBy(g => g.StateLevel).ToList();
             CanvasStates.Clear();
 
             canvasGraph.Children.Clear();
@@ -558,7 +497,7 @@ namespace VIPER.Graph.Window
 
             var aa = levelGroups.Max(s => s.Count());
 
-            var baseLeft = ((levelGroups.Max(s=>s.Count())* (RectangleWidth + (stateCount * 20)))/2.0)+100;
+            var baseLeft = ((levelGroups.Max(s => s.Count()) * (RectangleWidth + (stateCount * 20))) / 2.0) + 100;
             var baseTop = 100;
 
 
@@ -572,13 +511,13 @@ namespace VIPER.Graph.Window
 
                 foreach (var baseState in levelGroup)
                 {
-                    var  grid = new Grid();
+                    var grid = new Grid();
                     grid.Children.Add(new Rectangle() { Stroke = Brushes.LightGray, Fill = colorsStateType[baseState.StateType], Width = RectangleWidth, Height = RectangleHeight });
 
                     grid.Children.Add(GetTextBlock(baseState));
 
-                    var recLeftPosition = baseLeft - (baseSize) * (RectangleWidth + (stateCount*20));
-                    var recTopPosition = baseTop ;
+                    var recLeftPosition = baseLeft - (baseSize) * (RectangleWidth + (stateCount * 20));
+                    var recTopPosition = baseTop;
 
                     CanvasState canvasState = new CanvasState();
                     canvasState.StateId = baseState.StateId;
@@ -594,15 +533,15 @@ namespace VIPER.Graph.Window
 
 
 
-                       if (baseState.GoToRefusalState)
-                       {
-                           var startPoint = new Point() { X = recLeftPosition + RectangleWidth, Y = recTopPosition + (RectangleHeight/5) };
-                           var endPoint = new Point() { X = (recLeftPosition + RectangleWidth)+30, Y = recTopPosition + (RectangleHeight / 5) };
+                    if (baseState.GoToRefusalState)
+                    {
+                        var startPoint = new Point() { X = recLeftPosition + RectangleWidth, Y = recTopPosition + (RectangleHeight / 5) };
+                        var endPoint = new Point() { X = (recLeftPosition + RectangleWidth) + 30, Y = recTopPosition + (RectangleHeight / 5) };
 
-                           canvasGraph.Children.Add(DrawLinkArrow(startPoint, endPoint, colorsLine[StateType.RefusalState]));
+                        canvasGraph.Children.Add(DrawLinkArrow(startPoint, endPoint, colorsLine[StateType.RefusalState]));
 
 
-                         grid = new Grid();
+                        grid = new Grid();
 
 
                         var textBlock = new TextBlock() { Foreground = Brushes.Black, TextAlignment = TextAlignment.Center };
@@ -610,39 +549,39 @@ namespace VIPER.Graph.Window
                         foreach (var state in baseState.ModuleRefusals)
                         {
                             textBlock.Inlines.Add(new Run() { BaselineAlignment = BaselineAlignment.Superscript, Text = "λ", FontSize = 16 });
-                            textBlock.Inlines.Add(new Run() { BaselineAlignment = BaselineAlignment.Center, Text = $"{state +1}"});
+                            textBlock.Inlines.Add(new Run() { BaselineAlignment = BaselineAlignment.Center, Text = $"{state + 1}" });
                         }
 
                         grid.Children.Add(textBlock);
 
-                        Canvas.SetLeft(grid, recLeftPosition + RectangleWidth+5);
-                        Canvas.SetTop(grid, recTopPosition + (RectangleHeight / 5)+1);
+                        Canvas.SetLeft(grid, recLeftPosition + RectangleWidth + 5);
+                        Canvas.SetTop(grid, recTopPosition + (RectangleHeight / 5) + 1);
                         canvasGraph.Children.Add(grid);
 
                     }
 
 
                     foreach (var baseS in baseState.BaseStates)
+                    {
+                        var canvasBaseState = CanvasStates.Where(w => baseS.StateId == w.StateId).FirstOrDefault();
+
+                        if (canvasBaseState != null)
                         {
-                            var canvasBaseState = CanvasStates.Where(w => baseS.StateId == w.StateId).FirstOrDefault();
+                            var startPoint = new Point() { X = canvasBaseState.LeftPoint + RectangleWidth / 2, Y = canvasBaseState.TopPoint + RectangleHeight };
+                            var endPoint = new Point() { X = recLeftPosition + RectangleWidth / 2, Y = recTopPosition };
 
-                            if (canvasBaseState != null)
-                            {
-                                var startPoint = new Point() { X = canvasBaseState.LeftPoint + RectangleWidth / 2, Y = canvasBaseState.TopPoint + RectangleHeight };
-                                var endPoint = new Point() { X = recLeftPosition + RectangleWidth / 2, Y = recTopPosition };
-
-                                 canvasGraph.Children.Add(DrawLinkArrow(startPoint, endPoint, colorsLine[baseState.StateType]));
-                            }
-
+                            canvasGraph.Children.Add(DrawLinkArrow(startPoint, endPoint, colorsLine[baseState.StateType]));
                         }
 
-                    
+                    }
 
-                   
+
+
+
 
                     baseSize--;
                 }
-                baseTop=baseTop + 100;
+                baseTop = baseTop + 100;
             }
 
 
@@ -678,7 +617,7 @@ namespace VIPER.Graph.Window
                 }
             }
             public string StateString { get; set; }
-          
+
         }
 
         public List<Equation> GetEquations()
@@ -687,11 +626,11 @@ namespace VIPER.Graph.Window
             var systemState = SystemState;
 
             var listL = systemState.ListL;
-            var listM = systemState.ListM ;
+            var listM = systemState.ListM;
 
             equationCoefficients = new float[systemState.SystemStates.Count + 1, systemState.SystemStates.Count + 1];
 
-            for(var i=0;i< systemState.SystemStates.Count; i++)
+            for (var i = 0; i < systemState.SystemStates.Count; i++)
             {
                 for (var j = 0; j < systemState.SystemStates.Count; j++)
                 {
@@ -703,7 +642,7 @@ namespace VIPER.Graph.Window
 
             foreach (var currentState in systemState.SystemStates)
             {
-                var equationMatLabBuilder=new StringBuilder();
+                var equationMatLabBuilder = new StringBuilder();
                 var equationViewBuilder = new StringBuilder();
 
                 baseValues.Add(0);
@@ -711,7 +650,7 @@ namespace VIPER.Graph.Window
 
                 var childStates = systemState.GetChildStates(currentState);
 
-                equationViewBuilder.Append( $"dP{StringHelper.GetSubScript(currentState.StateId)}(t) / dt = ");
+                equationViewBuilder.Append($"dP{StringHelper.GetSubScript(currentState.StateId)}(t) / dt = ");
 
                 if (childStates.Count > 0 || currentState.ModuleRefusals.Count > 0)
                 {
@@ -733,7 +672,7 @@ namespace VIPER.Graph.Window
 
                         equationMatLabBuilder.Append($" {(stateDifference.IsRepair ? listM[stateDifference.RefusalStateElement] : listL[stateDifference.RefusalStateElement])} ");
 
-                        childStateCoff+= stateDifference.IsRepair ? listM[stateDifference.RefusalStateElement] : listL[stateDifference.RefusalStateElement];
+                        childStateCoff += stateDifference.IsRepair ? listM[stateDifference.RefusalStateElement] : listL[stateDifference.RefusalStateElement];
 
 
                         equationViewBuilder.Append($"{(stateDifference.IsRepair ? "μ" : "λ")}{StringHelper.GetSubScript(stateDifference.RefusalStateElement + 1)}");
@@ -746,13 +685,13 @@ namespace VIPER.Graph.Window
                         index++;
                     }
 
-                    if ((currentState.ModuleRefusals.Count>0 && childStates.Count > 0))
+                    if ((currentState.ModuleRefusals.Count > 0 && childStates.Count > 0))
                     {
                         equationMatLabBuilder.Append($" + ");
                         equationViewBuilder.Append($" + ");
                     }
 
-                    if ((currentState.ModuleRefusals.Count >0))
+                    if ((currentState.ModuleRefusals.Count > 0))
                     {
                         childStateCoff += currentState.ModuleRefusalsLamda;
                         equationMatLabBuilder.Append($"{currentState.ModuleRefusalsLamda}");
@@ -765,7 +704,7 @@ namespace VIPER.Graph.Window
                         equationViewBuilder.Append($" ) ");
                     }
 
-                    equationCoefficients[indexState,currentState.StateId - 1] = - childStateCoff;
+                    equationCoefficients[indexState, currentState.StateId - 1] = -childStateCoff;
 
                     equationMatLabBuilder.Append($" * p({currentState.StateId}) ");
                     equationViewBuilder.Append($"  * P{StringHelper.GetSubScript(currentState.StateId)}(t)");
@@ -797,7 +736,7 @@ namespace VIPER.Graph.Window
 
                         float childStateCoff = (stateDifference.IsRepair ? listM[stateDifference.RefusalStateElement] : listL[stateDifference.RefusalStateElement]);
 
-                        equationMatLabBuilder.Append($" ) * p({ state.StateId}) ");
+                        equationMatLabBuilder.Append($" ) * p({state.StateId}) ");
 
 
                         equationViewBuilder.Append($" ) * P{StringHelper.GetSubScript(state.StateId)}(t)");
@@ -818,7 +757,7 @@ namespace VIPER.Graph.Window
             }
 
             var errorViewEquation = new StringBuilder();
-             var errorEquation = new StringBuilder();
+            var errorEquation = new StringBuilder();
 
             errorViewEquation.Append($"dP{StringHelper.GetSubScript(systemState.SystemStates.Count() + 1)}(t) / dt = ");
 
@@ -827,7 +766,7 @@ namespace VIPER.Graph.Window
                 var states = systemState.SystemStates.Where(w => w.ModuleRefusals.Contains(i));
 
                 errorViewEquation.Append($"λ{StringHelper.GetSubScript(i + 1)}");
-          
+
 
 
                 if (states.Count() > 1)
@@ -865,7 +804,7 @@ namespace VIPER.Graph.Window
 
             }
 
-         viewEquations.Add(new Equation() { Equations = errorViewEquation.ToString(), StateType = StateType.RefusalState });
+            viewEquations.Add(new Equation() { Equations = errorViewEquation.ToString(), StateType = StateType.RefusalState });
 
             equations.Add(errorEquation.ToString());
             baseValues.Add(0);
@@ -914,7 +853,7 @@ namespace VIPER.Graph.Window
             {
                 scaleGraph.ScaleX *= ScaleRate;
                 scaleGraph.ScaleY *= ScaleRate;
-               
+
             }
             else
             {
@@ -935,10 +874,10 @@ namespace VIPER.Graph.Window
 
         private void plotterWork_MouseMove(object sender, MouseEventArgs e)
         {
-          
+
         }
 
-       
+
         public static CoordinateTransform GetTransform(PointsGraphBase graph)
         {
             if (!(graph.Plotter is Plotter2D))

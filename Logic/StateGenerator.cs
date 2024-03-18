@@ -40,8 +40,6 @@ namespace VIPER.StateModels
         public List<float> ListL = new List<float>();
         public List<float> ListM = new List<float>();
 
-
-
   
         public int CountModule { get; set; }
         public string SystemWorkCondition { get; set; }

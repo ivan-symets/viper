@@ -146,11 +146,6 @@ namespace VIPER.Presenters
 
             MatrixTransform mt = new MatrixTransform(m);
             this.LayoutTransform = mt;
-           // foreach (UIElement item in Children)
-            //{
-              //  if (item == startNode || item == endNode || item is ConnectionLine) continue;
-              //  item.LayoutTransform = mt;// new ScaleTransform(ZoomFactor, ZoomFactor);
-            //}
         }
 
 

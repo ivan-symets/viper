@@ -94,7 +94,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.uk-UA.resx</DependentUpon>
     </Compile>
-    <Compile Include="Settings.cs" />
     <Compile Include="System of differential equations\Integral.cs" />
     <Compile Include="System of differential equations\RungeKuttaMethod.cs" />
     <Page Include="Graph\Window\GraphWindow.xaml">
@@ -128,12 +127,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Component1.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Component1.Designer.cs">
-      <DependentUpon>Component1.cs</DependentUpon>
     </Compile>
     <Compile Include="Enums\Enum.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -190,7 +183,6 @@
       <LastGenOutput>Resources.uk-UA.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>

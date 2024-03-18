@@ -99,9 +99,6 @@ namespace VIPER.Presenters
         public static readonly DependencyProperty OutputCoordinatesProperty = DependencyProperty.Register("OutputCoordinates", typeof(Point),
            typeof(Module), new PropertyMetadata(new Point(0, 0)));
 
-        //public static readonly DependencyProperty InputLineProperty = DependencyProperty.Register("InputLine", typeof(ConnectionLine), typeof(Module));
-        //public static readonly DependencyProperty OutputLineProperty = DependencyProperty.Register("OutputLine", typeof(ConnectionLine), typeof(Module));
-
         public ConnectionLine InputLine { get; set; }
         public ConnectionLine OutputLine { get; set; }
 

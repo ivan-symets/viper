@@ -36,9 +36,6 @@ namespace VIPER.Presenters
 
         public static double MaxTime { get; set; }
         public static double Step { get; set; }
-        public static string SelectedLenguage { get; set; }
-        // public static MatLabEquation MatLabContext { get; set; } = new MatLabEquation();
-
     }
 
     class Segment

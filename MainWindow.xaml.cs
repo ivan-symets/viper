@@ -34,61 +34,18 @@ namespace VIPER
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static void AddProperty(ExpandoObject expando, string propertyName, object propertyValue)
-        {
-            // ExpandoObject supports IDictionary so we can extend it like this
-            var expandoDict = expando as IDictionary<string, object>;
-            if (expandoDict.ContainsKey(propertyName))
-                expandoDict[propertyName] = propertyValue;
-            else
-                expandoDict.Add(propertyName, propertyValue);
-        }
-
-
-
         public MainWindow()
         {
 
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Properties.Settings.Default.Language);
             InitializeComponent();
             DataContext = this;
-
-
-
-
-
-
-            //     ConfigurationHelper.USeRepairModules = true;
-
-
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(String name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
         }
 
         Subsystem subsystem;
         TextBox textFormula;
         TextBox Step;
         TextBox MaxTime;
-
-        private int _count = 22;
-        public int Cout
-        {
-            get { return _count; }
-            set
-            {
-                _count = value;
-                OnPropertyChanged("test");
-            }
-        }
-
-        public ObservableCollection<int> Numbers { get; set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
         public override void OnApplyTemplate()
         {
@@ -99,48 +56,32 @@ namespace VIPER
             MaxTime = base.GetTemplateChild("MaxTime") as TextBox;
         }
 
-
-        private ConnectionLine CreationLine { get; set; }
-        public Dictionary<string, int> aaa = new Dictionary<string, int> { { "Left", 669 }, { "Top", 73 } };
         private void ModuleAddModeChecked(object sender, RoutedEventArgs e)
         {
-
-
             subsystem.Mode = CreativeMode.Module;
-
-
         }
 
         private void Click(object sender, RoutedEventArgs e)
         {
             try
             {
-
-                var aa = StringHelper.GetSubScript(123456789);
                 Presenters.Path.PathNodes.Clear();
                 ConfigurationHelper.Modules.Clear();
-
 
                 Presenters.Path.logFormElements.Add($"({DateTime.Now:H:mm:ss}) Action: Get condirion.");
                 System.Diagnostics.Stopwatch myStopwatch = new System.Diagnostics.Stopwatch();
                 myStopwatch.Start();
                 textFormula.Text = subsystem.GetFormula();
 
-                var count = ConfigurationHelper.Modules.Count();
-
-                var aaa = StringHelper.GetUpScript(textFormula.Text);
                 ConfigurationHelper.WorkCondition = textFormula.Text;
 
                 myStopwatch.Stop();
                 var ms = myStopwatch.Elapsed;
-
-
                 Presenters.Path.logFormElements.Add($"Get  condition time {ms} ms.");
 
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
 
@@ -159,38 +100,19 @@ namespace VIPER
 
         private void ModeUnchecked(object sender, RoutedEventArgs e)
         {
-
         }
-
-        private void Canvas_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            //subsystem.Mode = CreativeMode.None;
-            //RB1.IsChecked = false;
-            //RB2.IsChecked = false;
-            //RB3.IsChecked = false;
-        }
-
         private void ToggleButton_Checked_1(object sender, RoutedEventArgs e)
         {
             subsystem.Mode = CreativeMode.Node;
         }
-
-
         private void Clear_OnClick(object sender, RoutedEventArgs e)
         {
             subsystem.Clear();
         }
 
-
         private void Delete_Select_Element(object sender, RoutedEventArgs e)
         {
             subsystem.isSelectDelete = !subsystem.isSelectDelete;
-
-        }
-
-        private void ToFile_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void ComboBox_SelectionChanged1(object sender, SelectionChangedEventArgs e)
@@ -232,8 +154,6 @@ namespace VIPER
         {
             ReliabilityWindow readabilityWindow = new ReliabilityWindow();
 
-
-
             readabilityWindow.ShowDialog();
         }
 
@@ -260,13 +180,6 @@ namespace VIPER
             {
                 ConfigurationHelper.ComputeEquations = true;
             }
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-
-
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -344,9 +257,6 @@ namespace VIPER
             // Create OpenFileDialog 
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
-
-
-
             // Set filter for file extension and default file extension 
             dlg.DefaultExt = ".json";
             dlg.Filter = "Json files (*.json)|*.json";
@@ -390,8 +300,6 @@ namespace VIPER
                     {
                         var connectionLine = element.ToConnectionLine();
 
-                
-
                         subsystem.schema.Children.Add(connectionLine);
                         shemaLines.Add(connectionLine);
 
@@ -408,7 +316,7 @@ namespace VIPER
                             Canvas.SetTop(node, element.Center.Y);
                         }
 
-                        if(node.IsStartNode)
+                        if (node.IsStartNode)
                             shemaElements.Add(subsystem.schema.startNode);
 
                         if (node.IsEndNode)
