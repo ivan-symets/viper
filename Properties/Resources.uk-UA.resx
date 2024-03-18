@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AverageDowntimeTime" xml:space="preserve">
+    <value>Середній час простою системи</value>
+  </data>
+  <data name="AverageRefusalTime" xml:space="preserve">
+    <value>Середній час відмови системи</value>
+  </data>
+  <data name="AverageWorkTime" xml:space="preserve">
+    <value>Середній час роботи системи</value>
+  </data>
+  <data name="CalculateEquations" xml:space="preserve">
+    <value>Визначити сис. рівнянь</value>
+  </data>
+  <data name="ChartDownTime" xml:space="preserve">
+    <value>Функція простою К_п  (t)</value>
+  </data>
+  <data name="ChartRefusal" xml:space="preserve">
+    <value>Графік ймовірності відмови системи</value>
+  </data>
+  <data name="ChartWork" xml:space="preserve">
+    <value>Функція готовності К_г  (t)</value>
+  </data>
+  <data name="ClearForm" xml:space="preserve">
+    <value>Очистити форму</value>
+  </data>
+  <data name="DeleteSelect" xml:space="preserve">
+    <value>Видалити вибраний</value>
+  </data>
+  <data name="DowntimeState" xml:space="preserve">
+    <value>Стан простою</value>
+  </data>
+  <data name="ElementCount" xml:space="preserve">
+    <value>Кількість елементів</value>
+  </data>
+  <data name="ElementPosition" xml:space="preserve">
+    <value>Розташування елемента</value>
+  </data>
+  <data name="EquationTabName" xml:space="preserve">
+    <value>Система диференціальних рівняннь</value>
+  </data>
+  <data name="ErrorEndNode" xml:space="preserve">
+    <value>Помилка! Кінцевий вузол {0} повинен бути з'єднаний!</value>
+  </data>
+  <data name="ErrorInputLine" xml:space="preserve">
+    <value>Помилка! Лінія  {0}' не має початкового елемента!</value>
+  </data>
+  <data name="ErrorInputModule" xml:space="preserve">
+    <value>Помилка! Модуль '{0}' не має вхідної лінії!</value>
+  </data>
+  <data name="ErrorNoCondition" xml:space="preserve">
+    <value>Помилка! Визначте умову працездатності</value>
+  </data>
+  <data name="ErrorNode" xml:space="preserve">
+    <value>Помилка! Вузол {0} повинен мати більше одного з'єднання!</value>
+  </data>
+  <data name="ErrorOutputLine" xml:space="preserve">
+    <value>Помилка! Лінія  {0}' не має кінцевого елемента!</value>
+  </data>
+  <data name="ErrorOutputModule" xml:space="preserve">
+    <value>Помилка! Модуль '{0}' не має вихідної лінії!</value>
+  </data>
+  <data name="ErrorStartNode" xml:space="preserve">
+    <value>Помилка! Початковий вузол {0} повинен бути з'єднаний!</value>
+  </data>
+  <data name="GetCondition" xml:space="preserve">
+    <value>Визначити функцію працездатності</value>
+  </data>
+  <data name="GetRating" xml:space="preserve">
+    <value>Аналізувати надійність</value>
+  </data>
+  <data name="GraphTabName" xml:space="preserve">
+    <value>Граф станів і переходів</value>
+  </data>
+  <data name="Horizontal" xml:space="preserve">
+    <value>Горизонтально</value>
+  </data>
+  <data name="LanguageHeader" xml:space="preserve">
+    <value>Мова</value>
+  </data>
+  <data name="LogHeader" xml:space="preserve">
+    <value>Таблиця логів</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Програмний засіб для аналізу надійнісних характеристик складних технічних систем</value>
+  </data>
+  <data name="Max" xml:space="preserve">
+    <value>Макс. час</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Відкрити схему</value>
+  </data>
+  <data name="ProbabilityDownTime" xml:space="preserve">
+    <value>Ймовірність простою P(t)</value>
+  </data>
+  <data name="ProbabilityRefusal" xml:space="preserve">
+    <value>Ймовірність відмови P(t)</value>
+  </data>
+  <data name="ProbabilityWork" xml:space="preserve">
+    <value>Ймовірність роботи P(t)</value>
+  </data>
+  <data name="RefusalState" xml:space="preserve">
+    <value>Стан відмови</value>
+  </data>
+  <data name="ReliabilityWindowTitle" xml:space="preserve">
+    <value>Вікно надійності</value>
+  </data>
+  <data name="RungeTabName" xml:space="preserve">
+    <value>Метод Рунге-Кутта</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Зберегти схему</value>
+  </data>
+  <data name="ShowCharts" xml:space="preserve">
+    <value>Відобразити графіки </value>
+  </data>
+  <data name="ShowGraph" xml:space="preserve">
+    <value>Відобразити граф </value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>Стан</value>
+  </data>
+  <data name="Step" xml:space="preserve">
+    <value>Крок</value>
+  </data>
+  <data name="SumDownTiimeStates" xml:space="preserve">
+    <value>Сума ймовірностей станів простою</value>
+  </data>
+  <data name="SumRefusalStates" xml:space="preserve">
+    <value>Сума ймовірностей станів відмови</value>
+  </data>
+  <data name="SumWorkingStates" xml:space="preserve">
+    <value>Сума ймовірностей робочих станів</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Час</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="UseRepair" xml:space="preserve">
+    <value>Відновлення елементів</value>
+  </data>
+  <data name="Vertical" xml:space="preserve">
+    <value>Вертикально</value>
+  </data>
+  <data name="WorkingState" xml:space="preserve">
+    <value>Робочий стан</value>
+  </data>
+</root>

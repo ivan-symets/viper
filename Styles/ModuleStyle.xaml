@@ -1,0 +1,110 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viper="clr-namespace:VIPER"
+                    xmlns:presenters="clr-namespace:VIPER.Presenters">
+
+    <Style x:Key="ModuleRectangleStyle" TargetType="{x:Type Rectangle}">
+        <Setter Property="Fill" Value="Gray"/>
+        <Setter Property="Stroke" Value="DarkGray"/>
+        <Setter Property="StrokeThickness" Value="3"></Setter>
+        <Setter Property="RadiusX" Value="30"/>
+        <Setter Property="RadiusY" Value="30"/>
+        <Setter Property="Height" Value="70"/>
+        <Setter Property="Width" Value="150"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}, Path=IsSelected}" Value="True">
+                <Setter Property="Stroke" Value="#FFFF8300"></Setter>
+                <Setter Property="Fill" Value="#FF666666"></Setter>
+                <Setter Property="StrokeThickness" Value="4"></Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ModuleEllipseStyle" TargetType="{x:Type Ellipse}">
+        <Setter Property="Fill" Value="White"/>
+        <Setter Property="Stroke" Value="DarkGray"/>
+        <Setter Property="StrokeThickness" Value="2"></Setter>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="25"/>
+    </Style>
+    
+    <ControlTemplate  x:Key="ModuleTemplate" TargetType="{x:Type presenters:Module}">
+        <Canvas x:Name="dcv" Height="75" Width="150">
+            <Popup PlacementTarget="{Binding ElementName=dcv}" IsOpen="{Binding IsMouseOver, ElementName=dcv, Mode=OneWay}" AllowsTransparency="True"
+                   LayoutTransform="{Binding ElementName=schema, Path=LayoutTransform.Inverse}">
+                <Border CornerRadius="10" Background="#77333333">
+                <StackPanel HorizontalAlignment="Left" Margin="20,1,20,1" Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Right" Margin="5,0,5,0" Foreground="LightGoldenrodYellow" Text="λ =" />
+                    <TextBlock Foreground="LightGoldenrodYellow" Margin="5,0,5,0" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Lambda}"/>
+
+                    <TextBlock HorizontalAlignment="Right" Margin="5,0,5,0" Foreground="LightGoldenrodYellow" Text="μ =" />
+                        <TextBlock Foreground="LightGoldenrodYellow" Margin="5,0,5,0" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Mu}"/>
+                    
+                        <TextBlock HorizontalAlignment="Right" Margin="5,0,5,0" Foreground="LightGoldenrodYellow" Text="Repairs ="/>
+                    <TextBlock Foreground="LightGoldenrodYellow" Margin="5,0,5,0" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RepairCount}"/>
+                       
+                    </StackPanel>
+                </Border>
+            </Popup>
+            <Rectangle x:Name="Module_Rectangle" Style="{StaticResource ModuleRectangleStyle}"/>
+            <Grid HorizontalAlignment="Left" Margin="20,1,20,1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24" />
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="35*" />
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                
+                
+                
+         
+                <TextBlock HorizontalAlignment="Center"  Margin="2,10,10,0" Grid.Column="0" Grid.RowSpan="2" TextAlignment="Center" Foreground="Gold" FontSize="29" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ModuleName}" />
+          
+                <TextBlock Foreground="LightGoldenrodYellow" FontSize="15" Margin="0,0,10,0" Text="λ:" Grid.Column="1" Grid.Row="0"/>
+                <TextBlock  Foreground="LightGoldenrodYellow" FontSize="15"  Margin="0,0,10,0" Text="μ:" Grid.Column="1" Grid.Row="1"/>
+                <TextBlock  Grid.Column="1" Grid.Row="2"  FontSize="15" Margin="0,0,10,0"  Foreground="LightGoldenrodYellow" Text="R:"/>
+
+
+
+                <TextBlock Foreground="LightGoldenrodYellow"  FontSize="15" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Lambda}" Grid.Column="2" Grid.Row="0"/>
+                <TextBlock Foreground="LightGoldenrodYellow"  FontSize="15" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Mu}" Grid.Column="2" Grid.Row="1"/>
+                <TextBlock Foreground="LightGoldenrodYellow" FontSize="15"  Grid.Column="2" Grid.Row="2" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RepairCount}" />
+              
+            </Grid>
+            
+           
+            <DockPanel Height="{Binding ElementName=Module_Rectangle, Path=ActualHeight}" Width="60"   Canvas.Left="120">
+                <presenters:ModuleEllipse Center="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=InputCoordinates}" />
+            </DockPanel>
+            <DockPanel Height="{Binding ElementName=Module_Rectangle, Path=ActualHeight}"  Width="60"  Canvas.Left="-30">
+                <presenters:ModuleEllipse Center="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=OutputCoordinates}" />
+            </DockPanel>
+        </Canvas>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="EllipseTemplate" TargetType="{x:Type presenters:ModuleEllipse}">
+        <Ellipse Style="{StaticResource ModuleEllipseStyle}"/>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type presenters:ModuleEllipse}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type presenters:ModuleEllipse}">
+                    <Ellipse Style="{StaticResource ModuleEllipseStyle}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type presenters:Module}">
+        <Setter Property="Template" Value="{StaticResource ModuleTemplate}"/>
+       
+    </Style>
+        
+</ResourceDictionary>

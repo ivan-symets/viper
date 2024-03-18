@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:presenters="clr-namespace:VIPER.Presenters">
+
+
+
+    <ControlTemplate  x:Key="ConnectionLineTemplate" TargetType="{x:Type presenters:ConnectionLine}">
+        <Canvas>
+            <Path Stroke="Black" StrokeThickness="3" Data="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PathGeometry, Mode=OneWay}"/>
+            <presenters:LineResizer Center="{Binding Path=Start, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type presenters:ConnectionLine}}}"/>
+            <presenters:LineResizer   Center="{Binding Path=End, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type presenters:ConnectionLine}}}"/>
+        </Canvas>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type presenters:ConnectionLine}">
+        <Setter Property="Template" Value="{StaticResource ConnectionLineTemplate}"/>
+    </Style>
+</ResourceDictionary>
